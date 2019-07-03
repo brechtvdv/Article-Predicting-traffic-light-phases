@@ -1,21 +1,49 @@
 ---
-title: "My Awesome Article"
+title: "Predicting traffic light phases using live Open Traffic Lights data"
 ---
 <header markdown="1">
 # <%= @item[:title] %>
 
 {:#authors}
-- <%= person 'John Doe', 'http://www.example.org/', 'http://www.example.org/#me' %>
+- <%= person 'Brecht Van de Vyvere', 'https://brechtvdv.github.io/', 'https://w3id.org/people/brechtvdv/#me' %>
+- <%= person 'Karel D\'haene', '', '' %>
+- <%= person 'Kurt D\'haene', '', '' %>
+- <%= person 'Pieter Colpaert', 'https://pietercolpaert.be', 'https://pietercolpaert.be/#me' %>
+- <%= person 'Ruben Verborgh', 'https://ruben.verborgh.org/', 'https://ruben.verborgh.org/profile/#me' %>
 
 {:#affiliations}
-- {:#myaffiliation} Awesome Inc.
+- {:#idlab} IDLab,
+            Department of Electronics and Information Systems,
+            Ghent University – imec
 
-<%= section 'abstract' %>
+<section class="context" markdown="block">
+## In reply to
+- [International Workshop On Semantics For Transport (Sem4Tra)](https://sem4tra.linkeddata.es/){:rel="as:inReplyTo"}
+</section>
+
 </header>
+
+<!-- Hack to make our custom fonts load in print-mode -->
+<!-- https://stackoverflow.com/questions/39364259/chrome-print-preview-doesnt-load-media-only-print-font-face -->
+<span class='printfont1'> </span>
+<span class='printfont2'> </span>
+<span class='printfont3'> </span>
+<span class='printfont4'> </span>
+
+<div class="double-column">
+
+ <%= section 'abstract' %>
 
 <main>
   <!-- Add sections by specifying their file name, excluding the '.md' suffix. -->
-  <%= section 'introduction'  %>
+ <%= section 'introduction'  %>
+ <%= section 'sota'  %>
+  <%= section 'implementation'  %>
+  <%= section 'demonstrator'  %>
+  <%= section 'conclusion'  %>
 </main>
 
-<footer></footer>
+<footer>
+</footer>
+
+</div>

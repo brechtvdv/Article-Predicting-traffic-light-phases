@@ -2,6 +2,18 @@
 @import 'reset.scss';
 
 @media screen {
+  #codepen {
+    display: none;
+  } 
+  #repeating-title {
+    display: none;
+  }
+  .printonly {
+    display: none;
+  }
+}
+
+@media screen {
   #repeating-title {
     display: none;
   }
