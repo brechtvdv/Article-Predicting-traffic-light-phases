@@ -1,5 +1,4 @@
 ## Abstract
-<!-- -->
 Nowadays, dynamic traffic lights with a variable phase duration
 are widely used. This means that the end time of the phase is unknown,
 thus smart mobility applications such as route planners have to predict the
