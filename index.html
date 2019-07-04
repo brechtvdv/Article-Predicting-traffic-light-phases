@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Predicting traffic light phases using live Open Traffic Lights data</title>
+  <link rel="stylesheet" media="screen" href="styles/screen.css" />
+  <link rel="stylesheet" media="print"  href="styles/print.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" media="all"    href="styles/katex.css" />
+  <meta name="citation_title" content="Predicting traffic light phases using live Open Traffic Lights data">
+  <meta name="citation_author" content="Brecht Van de Vyvere" />
+  <meta name="citation_author" content="Karel D'haene" />
+  <meta name="citation_author" content="Kurt D'haene" />
+  <meta name="citation_author" content="Pieter Colpaert" />
+  <meta name="citation_author" content="Ruben Verborgh" />
+  
+  <meta name="citation_publication_date" content="2019/07/04" />
+</head>
+
+<body prefix="rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# owl: http://www.w3.org/2002/07/owl# xsd: http://www.w3.org/2001/XMLSchema# dcterms: http://purl.org/dc/terms/ dctypes: http://purl.org/dc/dcmitype/ foaf: http://xmlns.com/foaf/0.1/ v: http://www.w3.org/2006/vcard/ns# pimspace: http://www.w3.org/ns/pim/space# cc: https://creativecommons.org/ns# skos: http://www.w3.org/2004/02/skos/core# prov: http://www.w3.org/ns/prov# qb: http://purl.org/linked-data/cube# schema: http://schema.org/ void: http://rdfs.org/ns/void# rsa: http://www.w3.org/ns/auth/rsa# cert: http://www.w3.org/ns/auth/cert# cal: http://www.w3.org/2002/12/cal/ical# wgs: http://www.w3.org/2003/01/geo/wgs84_pos# org: http://www.w3.org/ns/org# biblio: http://purl.org/net/biblio# bibo: http://purl.org/ontology/bibo/ book: http://purl.org/NET/book/vocab# ov: http://open.vocab.org/terms/ sioc: http://rdfs.org/sioc/ns# doap: http://usefulinc.com/ns/doap# dbr: http://dbpedia.org/resource/ dbp: http://dbpedia.org/property/ sio: http://semanticscience.org/resource/ opmw: http://www.opmw.org/ontology/ deo: http://purl.org/spar/deo/ doco: http://purl.org/spar/doco/ cito: http://purl.org/spar/cito/ fabio: http://purl.org/spar/fabio/ oa: http://www.w3.org/ns/oa# as: https://www.w3.org/ns/activitystreams# ldp: http://www.w3.org/ns/ldp# solid: http://www.w3.org/ns/solid/terms# acl: http://www.w3.org/ns/auth/acl# dio: https://w3id.org/dio# as: https://www.w3.org/ns/activitystreams# oa: http://www.w3.org/ns/oa# ldp: http://www.w3.org/ns/ldp#" typeof="schema:CreativeWork sioc:Post prov:Entity">
+  <header>
+  <h1 id="predicting-traffic-light-phases-using-live-open-traffic-lights-data">Predicting traffic light phases using live Open Traffic Lights data</h1>
+
+  <ul id="authors">
+    <li><a href="https://brechtvdv.github.io/" typeof="http://xmlns.com/foaf/0.1/Person" resource="https://w3id.org/people/brechtvdv/#me">Brecht Van de Vyvere</a></li>
+    <li><a href="" typeof="http://xmlns.com/foaf/0.1/Person" resource="">Karel D&#8217;haene</a></li>
+    <li><a href="" typeof="http://xmlns.com/foaf/0.1/Person" resource="">Kurt D&#8217;haene</a></li>
+    <li><a href="https://pietercolpaert.be" typeof="http://xmlns.com/foaf/0.1/Person" resource="https://pietercolpaert.be/#me">Pieter Colpaert</a></li>
+    <li><a href="https://ruben.verborgh.org/" typeof="http://xmlns.com/foaf/0.1/Person" resource="https://ruben.verborgh.org/profile/#me">Ruben Verborgh</a></li>
+  </ul>
+
+  <ul id="affiliations">
+    <li id="idlab">IDLab,
+          Department of Electronics and Information Systems,
+          Ghent University – imec</li>
+  </ul>
+
+  <section class="context">
+    <h2 id="in-reply-to">In reply to</h2>
+    <ul>
+      <li><a href="https://sem4tra.linkeddata.es/" rel="as:inReplyTo">International Workshop On Semantics For Transport (Sem4Tra)</a></li>
+    </ul>
+  </section>
+
+</header>
+
+<!-- Hack to make our custom fonts load in print-mode -->
+<!-- https://stackoverflow.com/questions/39364259/chrome-print-preview-doesnt-load-media-only-print-font-face -->
+<p><span class="printfont1"> </span>
+<span class="printfont2"> </span>
+<span class="printfont3"> </span>
+<span class="printfont4"> </span></p>
+
+<div class="double-column">
+
+ <section id="abstract">
+    <h2>Abstract</h2>
+    <p>Traffic lights with a variable phase duration are widely used to optimize traffic flows. Although the minimum and maximum duration of a phase is already published, route planners need a predicted duration with a certain confidence for routing decisions.
+We tested for a live Open traffic lights dataset of Antwerp (i) how frequency distributions of phase durations can be used for predicting and (ii) how this could work client-side by creating frequency distributions on-the-fly.
+A mean average error (MAE) of 5.1 seconds is observed by grouping the phase durations in fine-grained time slots and using the median to select a predicted phase duration. Also we see that the MAE is flattening around 10s for phase durations below 62s and starts growing linear after that. 
+With our approach, route planners can have a good indication of the current phase duration for the bulk of phases. In future work, we will look into how client-side route planners can integrate traffic lights data into their road network graph and how other Open Datasets can be reused to detect the more exceptionally longer phase durations.</p>
+  </section>
+
+
+<main>
+  <!-- Add sections by specifying their file name, excluding the '.md' suffix. -->
+ <section>
+      <div class="printonly">This is a print-version of an article first written for the Web. The Web-version is available at <a href="https://brechtvdv.github.io/Article-Predicting-traffic-light-phases">https:/​/​brechtvdv.github.io/Article-Predicting-traffic-light-phases</a>.</div>
+
+      <h2 id="introduction">Introduction</h2>
+
+      <p>During 2018, the city of Antwerp has invested in connecting the traffic lights controller of one intersection to the Internet. With the Open Traffic Lights project<span class="references">[<a href="#ref-1">1</a>]</span>, these data have been published on the Web as Linked Open Data setting the foundation for reuse. Typically, the phase and timing of a traffic light is used for Green Light Optimal Speed Advisory (GLOSA) <span class="references">[<a href="#ref-2">2</a>]</span> systems to save fuel through speed advice or count-down timer <span class="references">[<a href="#ref-3">3</a>]</span>. While GLOSA systems focus on the event of approaching an intersection, route planners have a more global view of the journey where fuel savings is only one parameter. 
+Implementing live features like these on the server-side requires a much more complex technology stack than traditional origin-destination route planning queries requiring permanent tracking of the user.
+Recently, work has been done on serverless route planning for <span property="schema:citation http://purl.org/spar/cito/cites" resource="https://dx.doi.org/10.1007/978-3-319-60131-1_26"><a href="https://pietercolpaert.be/papers/icwe2017-lc/paper.pdf">public transport</a></span> <span class="references">[<a href="#ref-4">4</a>]</span> and <a property="schema:citation http://purl.org/spar/cito/cites" href="http://pieter.pm/demo-paper-routable-tiles/">road networks</a> <span class="references">[<a href="#ref-5">5</a>]</span> performing the route planning algorithm on the client-side. Extending such a client with the consumption of traffic lights data introduces challenges, such as forecasting the phase duration<span class="references">[<a href="#ref-6">6</a>]</span>, discovering and integrating traffic lights into the road network of the route planner. Currently, a traffic light update contains an interval when the phase will end. This is problematic for route planners, because they need to know in which the phase will be and for how long when the driver is approaching the intersection. In this article, we investigate how the duration of a live signal phase can be predicted, demonstrate this with the live data from an intersection in Antwerp and discuss how predictions can play a role into the eco-system of serverless route planning interfaces.</p>
+
+      <!-- In this paper, we describe how routeplanners can discover, integrate and predict traffic lights data. First, we describe in related work how traffic lights data are structured and how its phase duration can be predicted. Next, we describe how routeplanners can discover and integrate traffic lights data and how predictions can be made from the Open Traffic Lights data. Then we demonstrate with a  proof-of-concept. -->
+
+    </section>
+
+ <section id="related">
+      <h2>Related work</h2>
+
+      <p>The <a href="https://opentrafficlights.org">Open Traffic Lights</a>(OTL) <span class="references">[<a href="#ref-1">1</a>]</span> project proposes a strategy for publishing traffic lights data in a semantical and technical interoperable way. First, with the OTL ontology, global identifiers (URIs) are defined for a subset of the terms of the currently used datastandards SPAT and MAP. SPAT defines the signal phase and timing of a signal group to which a traffic light belongs. MAP defines the geometry of the departure and arrival lanes and how these connections relate to a signal group. By agreeing on the semantics of the terms and applying RDF for describing facts, data publishers are not limited to one datastructure in JSON format. Secondly, OTL defines how the traffic lights data can be published as time sorted <a href="https://brechtvdv.github.io/Article-Open-Traffic-Lights/#specification">Linked Data Fragments</a>. This allows HTTP clients to fetch not only the latest value, but also the historic values through pagination links. In <a href="#implementation"></a> we will use this knowledge to generate predictions.</p>
+
+      <p>Predicting the phase duration has been done in related work <span class="references">[<a href="#ref-7">7</a>, <a href="#ref-8">8</a>]</span>. In their experiments, tests have been run on traffic lights data with a fixed cycle time. This means that a combination of signal phases occurs repeatedly between fixed time intervals. The intersection in Antwerp, from which we will use the data, has a <a href="http://docs.wegenenverkeer.be/Publicaties/Brochure%20Verkeerslichtengeregelde%20kruispunten.pdf">variable cycle time</a> between a minimum and maximum time. Depending on the situation of the intersection, signal phases can be extended or shortened which influences its cycle time. However this adds an extra complexity, the ideas of the related work can still be applied. Ibrahim et al. <span class="references">[<a href="#ref-7">7</a>]</span> proposes a frequency distribution for the phase duration for every signal phase and fixed cycle time, because an intersection can have a different fixed cycle time for example during working days, than in the weekend. Bodenheimer et al. <span class="references">[<a href="#ref-8">8</a>]</span> proposes to do this for time slots of 15 minutes and for the type of day (working or vacation day).
+With the frequency distribution, we can calculate the probability <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">a</span></span></span></span> that the real phase duration <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi></mrow><annotation encoding="application/x-tex">d</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">d</span></span></span></span> takes longer than the predicted duration <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>d</mi><mi>p</mi></msub></mrow><annotation encoding="application/x-tex">d_p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.980548em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">p</span></span></span></span><span class="vlist-s">&#x200b;</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span> (<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mo>=</mo><mi>P</mi><mo>(</mo><mi>d</mi><mo>&gt;</mo><msub><mi>d</mi><mi>p</mi></msub><mo>)</mo><mo>)</mo></mrow><annotation encoding="application/x-tex">a = P(d&gt;d_p))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">a</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">p</span></span></span></span><span class="vlist-s">&#x200b;</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mclose">)</span></span></span></span>). By taking the cumulative frequency of durations before the predicted duration <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>F</mi><mo>(</mo><mi>d</mi><mo>)</mo><mo>=</mo><mi>P</mi><mo>(</mo><mi>d</mi><mo>&#x2264;</mo><msub><mi>d</mi><mi>p</mi></msub><mo>)</mo></mrow><annotation encoding="application/x-tex">F(d) = P(d&#x2264;d_p)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mopen">(</span><span class="mord mathdefault">d</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&#x2264;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">p</span></span></span></span><span class="vlist-s">&#x200b;</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>, then we can calculate <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">a</span></span></span></span> with the formula: <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mo>=</mo><mn>1</mn><mo>&#x2212;</mo><mi>F</mi><mo>(</mo><mi>d</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">a = 1-F(d)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">a</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">&#x2212;</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mopen">(</span><span class="mord mathdefault">d</span><span class="mclose">)</span></span></span></span>. This allows predicting with a fixed probability <span class="references">[<a href="#ref-9">9</a>]</span>. The idea is that historical values are a good reflection of future phases, so future phases will correspond with the frequency distribution. For example: it is 90% sure that a phase will be longer than the first 10% of the cumulative frequency distribution and 90% sure that it will take less than the last 10%.</p>
+    </section>
+
+  <section id="predicting-the-phase-duration">
+      <h2>Predicting the phase duration</h2>
+
+      <p>Imagine a route planner receives a live update from a traffic light that is still uncertain when it will end. For every update it receives, the phase duration of a signal phase can be predicted using a frequency distribution.<br />
+Instead of grouping signal phases for every fixed cycle time in related work <span class="references">[<a href="#ref-7">7</a>]</span>, we group in different time slots, because the traffic lights controller in <a href="https://docs.wegenenverkeer.be/Vademecum
+s/Vademecum%5C%20Veilige%5C%20wegen%5C%20en%5C%20kruispunten/3.2.%5C%
+20Modeloplossingen%5C%20Verkeerslichten.pdf">Antwerp</a> dynamically changes the cycle time to the live situation on the intersection (crowdedness, pedestrian pushing a detector etc.). As a baseline, we used no grouping in time. This means that only one distribution is created for every signal phase containing all historical phase durations. Next, we grouped per type of day (weekend or weekday) and for every hour. The reasoning behind this is that the traffic lights controller interacts differently during the weekends and peak hours. The last strategy is more fine-grained and groups per day (monday, tuesday…) and in time slots of 20 minutes.
+To select a predicted duration <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>d</mi><mi>p</mi></msub></mrow><annotation encoding="application/x-tex">d_p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.980548em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">p</span></span></span></span><span class="vlist-s">&#x200b;</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span>, we used the median, mean and mode. We calculate the prediction error with the mean absolute error (MEA) as follows: 
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>M</mi><mi>A</mi><mi>E</mi><mo>=</mo><mfrac><mn>1</mn><mi>n</mi></mfrac><msubsup><mo>&#x2211;</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></msubsup><mi mathvariant="normal">&#x2223;</mi><msub><mi>d</mi><mi>p</mi></msub><mo>(</mo><mi>i</mi><mo>)</mo><mo>&#x2212;</mo><mi>d</mi><mo>(</mo><mi>i</mi><mo>)</mo><mi mathvariant="normal">&#x2223;</mi></mrow><annotation encoding="application/x-tex">MAE = \dfrac{1}{n}\sum_{i=1}^n|d_p(i)-d(i)|</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault">A</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.00744em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault">n</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">&#x200b;</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">&#x2211;</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.804292em;"><span style="top:-2.40029em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">&#x200b;</span></span><span class="vlist-r"><span class="vlist" style="height:0.29971000000000003em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">&#x2223;</span><span class="mord"><span class="mord mathdefault">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">p</span></span></span></span><span class="vlist-s">&#x200b;</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">i</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">&#x2212;</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">d</span><span class="mopen">(</span><span class="mord mathdefault">i</span><span class="mclose">)</span><span class="mord">&#x2223;</span></span></span></span>
+After creating the distributions, we calculated for every SPAT message <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span> its predicted duration <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>d</mi><mi>p</mi></msub></mrow><annotation encoding="application/x-tex">d_p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.980548em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">p</span></span></span></span><span class="vlist-s">&#x200b;</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span> and compared this with its real duration <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi></mrow><annotation encoding="application/x-tex">d</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">d</span></span></span></span>. By taking the mean from these errors we know how many seconds on average the predicted duration deviates from the real duration.</p>
+
+      <h2 id="results">Results</h2>
+
+      <p>To run reproducable tests, a <a href="https://github.com/kridhaen/OpenTrafficLightsData">dataset</a> from 8th till 25th March 2019 is harvested from the OTL endpoint containing 50951 historical fragments. The test cases are ran using 10-fold cross validation. First, we extracted the phase and timing of signal groups and randomly divided these in 10 groups. Then predictions are made by replaying every SPAT update, who belongs in one group, using the frequency distributions made from the other 9 groups.
+<a href="#mae-prediction">Table 1</a> shows the MAE for every grouping strategy and method we applied. We see that fine-grained grouping of phases improves the MAE which acknowledges related work <span class="references">[<a href="#ref-8">8</a>]</span>. Also, the median returns a better result for all three groupings than the mean and mode.</p>
+
+      <figure id="mae-prediction" class="table">
+
+        <table>
+          <thead>
+            <tr>
+              <th>Method</th>
+              <th>No grouping (s)</th>
+              <th>Per type of day and every hour (s)</th>
+              <th>Per day and every 20 minutes (s)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Median</td>
+              <td><code>6.8</code></td>
+              <td><code>5.5</code></td>
+              <td><code>5.1</code></td>
+            </tr>
+            <tr>
+              <td>Mean</td>
+              <td><code>7.0</code></td>
+              <td><code>5.9</code></td>
+              <td><code>5.6</code></td>
+            </tr>
+            <tr>
+              <td>Mode</td>
+              <td><code>7.6</code></td>
+              <td><code>6.2</code></td>
+              <td><code>6.0</code></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <figcaption>
+          <p><span class="label">Table 1:</span> Comparison of the mean absolute error (MAE) for different grouping strategies and methods for choosing the prediction. Using the median and fine-grained grouping (per day and time buckets of 20 minutes) gives the lowest MAE of 5.1 seconds.</p>
+        </figcaption>
+      </figure>
+
+      <p>We go one step further by also considering the time that is left before the phase of a SPAT message <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span> makes a transition to the next phase. We hypothesize that in the beginning of a phase the prediction error will be higher then on the end of the phase.
+Signal phases are grouped per day and every 20 minutes (the third grouping strategy) and the median is used for the prediction.
+ <a href="#time-till-transition">Fig. 1</a> shows for the <a href="https://w3id.org/opentrafficlights/thesauri/signalphase/3">signal phase</a> with label “Stop and remain” how its prediction error (MAE) compares with the time that a phase took. We see can three findings: first, the prediction error grows linear for phase durations above 62 seconds. This is because very long phase occur less, thus using the median for outliers is not a good fit. Secondly, we see a more flat line for phase durations between 9 and 65 seconds with a MAE around 10 seconds. For the bulk of phases, which are between this interval, the median gives a better indication than for outliers. Finally, between 0 and 9 seconds, the prediction error is zero, because the minimum duration equals the maximum duration.</p>
+
+      <figure id="time-till-transition">
+<center>
+<img style="height: auto; width: 50%" src="img/time-till-transition-2.svg" />
+</center>
+<figcaption>
+          <p><span class="label">Fig. 1:</span> The mean absolute error (MAE) lowers when the end of phase nearing. Predictions are created by selecting the median and using frequency distributions that group phases per day and every 20 minutes. This is calculated from <a href="https://w3id.org/opentrafficlights/thesauri/signalphase/3">signal phase</a> with label “Stop and remain” which corresponds with a red color on a traffic light.</p>
+        </figcaption>
+</figure>
+
+      <p>In next section, we demonstrate a HTTP client that generates a prediction for a live traffic light on-the-fly.</p>
+    </section>
+
+  <section id="demonstrator">
+      <h2>Demonstrator</h2>
+
+      <p>This application demonstrates a Web client that predicts the phase duration of a live traffic light in <a href="https://www.openstreetmap.org/#map=19/51.21205/4.39717">Antwerp</a>. The green line on the chart shows minimum duration in seconds of the phase, like wise the red line shows the maximum duration. A blue line will show the predicted duration, but the client first needs to construct frequency distributions by continuously fetching the latest data from the <a href="https://lodi.ilabt.imec.be/observer/rawdata/latest">OTL API</a>. Frequency distributions are made with the third grouping strategy, for every signal group, signal phase, day and time slots of 20 minutes. The median is calculated at the start of a new phase for the predicted phase.</p>
+
+      <p>This vizualization gives some insights:</p>
+
+      <ul>
+        <li>The predicted phase duration increases the insight how long the phase will actual take, especially when the minimum and maximum duration differ tens of seconds.</li>
+        <li>When the minimum duration aligns with the maximum duration, the blue line gets corrected with a few seconds. This behavior corresponds with the average results from <a href="#mae-prediction">Table 1</a>.</li>
+      </ul>
+
+      <p>The source code can be found as a Codepen at <a href="https://codepen.io/kridhaen/pen/VJrezO/">https:/​/​codepen.io/kridhaen/pen/VJrezO/</a>.</p>
+
+      <figure id="codepen">
+<center>
+<img src="img/demo-2.png" />
+</center>
+<figcaption>
+          <p><span class="label">Fig. 2:</span> Webapplication that shows the minimum (green), maximum (red) and predicted (blue) phase duration (seconds) of a live traffic light in Antwerp. The predicted phase duration is calculated by creating a frequency distribution on-the-fly from the live data.</p>
+        </figcaption>
+</figure>
+
+      <p class="codepen" data-height="761" data-theme-id="0" data-default-tab="result" data-user="kridhaen" data-slug-hash="VJrezO" style="height: 761px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="OpenTrafficLightsPredictor">
+  <span>See the Pen <a href="https://codepen.io/kridhaen/pen/VJrezO/">
+  OpenTrafficLightsPredictor</a> by kridhaen (<a href="https://codepen.io/kridhaen">@kridhaen</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+      <script async="" src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+    </section>
+
+  <section id="discussion">
+      <h2>Discussion</h2>
+
+      <p>In this paper we demonstrated how frequency distributions can be used for predicting the phase duration of a traffic light. Different approaches are possible to create these distributions over the Web: on the one hand, a client can do all the work by downloading fragments from the <a href="https://lodi.ilabt.imec.be/observer/rawdata/latest">OTL API</a> and building the distributions client-side. This requires high bandwidth consumption and processing power, but allows new ways of grouping signal phases by querying other Open Datasets (wheather data, crowdness detectors at the intersection…). On the other hand, the server can internally maintain frequency distributions and only publish the likely time and confidence in SPAT messages. This gives no flexibility for the client, for example to predict an interval instead of one phase duration. A third option is to publish frequency distributions as metadata of a signal group. This introduces a new trade-off between server and client effort: frequency distributions can be exposed as cacheable fragments supporting serverless route planning interfaces, while clients can still mix these with other datasets and setting custom prediction preferences.</p>
+
+      <p>Future work should be done how frequency distributions or in general summaries of sensor data can be published with RDF. Also, we need to investigate how a client-side route planner (cfr. <a href="https://planner.js.org/">Planner.js</a>) can integrate this data and how this can influence the user perceived journey experience.</p>
+
+    </section>
+
+</main>
+
+<footer>
+<section id="references">
+<h2>References</h2>
+<dl class="references">
+  <dt id="ref-1">[1]</dt>
+  <dd resource="#vandevyvere_mepdaw_2019" typeof="schema:Article">Van de Vyvere, B., Colpaert, P., Mannens, E., Verborgh, R.: Open traffic lights: a strategy for publishing and preserving traffic lights data. In: Proceedings of the 5th Workshop on Managing the Evolution and Preservation of the Data Web (2019).</dd>
+  <dt id="ref-2">[2]</dt>
+  <dd resource="https://dx.doi.org/10.1109/ICCVE.2013.6799846" typeof="schema:Article">Zweck, M., Schuch, M.: Traffic light assistant: Applying cooperative ITS in European cities and vehicles. In: 2013 International Conference on Connected Vehicles and Expo (ICCVE). pp. 509–513 (2013).</dd>
+  <dt id="ref-3">[3]</dt>
+  <dd resource="https://dx.doi.org/10.1109/FISTS.2011.5973594" typeof="schema:Article">Barth, M., Mandava, S., Boriboonsomsin, K., Xia, H.: Dynamic ECO-driving for arterial corridors. In: 2011 IEEE Forum on Integrated and Sustainable Transportation Systems, FISTS 2011. pp. 182–188 (2011).</dd>
+  <dt id="ref-4">[4]</dt>
+  <dd resource="https://dx.doi.org/10.1007/978-3-319-60131-1_26" typeof="schema:Article">Colpaert, P., Verborgh, R., Mannens, E.: Public Transit Route Planning through Lightweight Linked Data Interfaces. In: Cabot, J., Virgilio, R. de, and Torlone, R. (eds.) Proceedings of the 17th International Conference on Web Engineering. pp. 403–411. Springer (2017).</dd>
+  <dt id="ref-5">[5]</dt>
+  <dd resource="http://pieter.pm/demo-paper-routable-tiles/" typeof="schema:Article">Colpaert, P., Abelshausen, B., Rojas Meléndez, J., Delva, H., Verborgh, R.: Republishing Open Street Map’s roads as Linked Routable Tiles. In: Proceedings of the 16th ESWC: Posters and Demos (2019).</dd>
+  <dt id="ref-6">[6]</dt>
+  <dd resource="#spat_amsterdam" typeof="schema:CreativeWork">Amelink, M.: Signal phase and time (SPAT) and map data (MAP). Amsterdam group (2015).</dd>
+  <dt id="ref-7">[7]</dt>
+  <dd resource="https://dx.doi.org/10.1109/TITS.2018.2873150" typeof="schema:Article">Ibrahim, S., Kalathil, D., Sanchez, R.O., Varaiya, P.: Estimating Phase Duration for SPaT Messages. IEEE Transactions on Intelligent Transportation Systems. 20, 2668–2676 (2019).</dd>
+  <dt id="ref-8">[8]</dt>
+  <dd resource="https://dx.doi.org/10.1109/RNDM.2015.7325247" typeof="schema:Article">Bodenheimer, R., Eckhoff, D., German, R.: GLOSA for adaptive traffic lights: Methods and evaluation. In: 2015 7th International Workshop on Reliable Networks Design and Modeling (RNDM). pp. 320–328 (2015).</dd>
+  <dt id="ref-9">[9]</dt>
+  <dd resource="https://dx.doi.org/10.1109/VTCFall.2014.6965983" typeof="schema:Article">Protschky, V., Feit, S., Linnhoff-Popien, C.: Extensive Traffic Light Prediction under Real-World Conditions. In: 2014 IEEE 80th Vehicular Technology Conference (VTC2014-Fall). pp. 1–5 (2014).</dd>
+</dl>
+</section>
+</footer>
+
+</div>
+
+
+
+</body>
+</html>
