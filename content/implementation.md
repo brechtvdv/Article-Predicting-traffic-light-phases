@@ -2,7 +2,7 @@
 {:#predicting-the-phase-duration}
 
 Imagine a route planner receives a live update from a traffic light that is still uncertain when it will end. For every update it receives, the phase duration of a signal phase can be predicted using a frequency distribution.  
-Instead of grouping signal phases for every fixed cycle time in related work [](8500307), we group in different time slots, because the traffic lights controller in [Antwerp](https://docs.wegenenverkeer.be/Vademecum
+Instead of grouping signal phases for every fixed cycle time in related work [](cite:cites 8500307), we group in different time slots, because the traffic lights controller in [Antwerp](https://docs.wegenenverkeer.be/Vademecum
 s/Vademecum%5C%20Veilige%5C%20wegen%5C%20en%5C%20kruispunten/3.2.%5C%
 20Modeloplossingen%5C%20Verkeerslichten.pdf) dynamically changes the cycle time to the live situation on the intersection (crowdedness, pedestrian pushing a detector etc.). As a baseline, we used no grouping in time. This means that only one distribution is created for every signal phase containing all historical phase durations. Next, we grouped per type of day (weekend or weekday) and for every hour. The reasoning behind this is that the traffic lights controller interacts differently during the weekends and peak hours. The last strategy is more fine-grained and groups per day (monday, tuesday...) and in time slots of 20 minutes.
 To select a predicted duration $$d_p$$, we used the median, mean and mode. We calculate the prediction error with the mean absolute error (MEA) as follows: 
