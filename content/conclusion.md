@@ -1,18 +1,7 @@
 ## Discussion
 {:#discussion}
 
-Volledige server-side berekenen van likelytime en confidence
-Future work, 
-likely time toevoegen aan ontology
-frequency distributions publiceren als fragmenten
+In this paper we demonstrated how frequency distributions can be used for predicting the phase duration of a traffic light. Different approaches are possible to create these distributions over the Web: on the one hand, a client can do all the work by downloading fragments from the [OTL API](https://lodi.ilabt.imec.be/observer/rawdata/latest) and building the distributions client-side. This requires high bandwidth consumption and processing power, but allows new ways of grouping signal phases by querying other Open Datasets (wheather data, crowdness detectors at the intersection...). On the other hand, the server can internally maintain frequency distributions and only publish the likely time and confidence in SPAT messages. This gives no flexibility for the client, for example to predict an interval instead of one phase duration. A third option is to publish frequency distributions as metadata of a signal group. This introduces a new trade-off between server and client effort: frequency distributions can be exposed as cacheable fragments supporting serverless route planning interfaces, while clients can still mix these with other datasets and setting custom prediction preferences.  
 
-2 routeplanning user preferences:
-- a fixed probability
-- maximum MAE (op basis van de grafiek)
+Future work should be done how frequency distributions or in general summaries of sensor data can be published with RDF. Also, we need to investigate how a client-side route planner (cfr. [Planner.js](https://planner.js.org/)) can integrate this data and how this can influence the user perceived journey experience.
 
-<!-- First steps are done in creating a OpenLR implementation for mapping lanes to road network.
-We want to extend the OTL ontology for annotating signal groups for specific road user groups. 
-Filtering becomes possible, more specific route planners for bicyclists, pedestrians... -->
-
-Optimization of grouping signal phases:
-Grouping signal phases per day and minute intervals lowers the prediction error. Other datasets can be used (weather, events, traffic counters...) to make better groupings.

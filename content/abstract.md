@@ -1,18 +1,5 @@
 ## Abstract
-Nowadays, dynamic traffic lights with a variable phase duration
-are widely used. This means that the end time of the phase is unknown,
-thus smart mobility applications such as route planners have to predict the
-phase duration. In this paper, a short-term prediction for variable phase
-durations is made from frequency distributions created using SPaT messages
-published with Linked Data Fragments. We grouped the observed
-historical phase durations in frequency distributions depending on the time
-slot of the observations and made predictions by calculating the median of
-the distribution. Using the described methods on an intersection in the city
-of Antwerp, an average prediction error of 5,1 seconds is achieved. By using
-frequency distributions, a prediction with a fixed confidence can be made.
-For example, on average a prediction can be made for 60% of the phase
-duration with a fixed confidence of 90%. Although a frequency distribution
-gives smart mobility applications a better understanding how long a
-phase duration will take, historical data needs to be client-side processed in
-advance. In future work, frequency distributions could be published with
-Linked Data Fragments.
+Traffic lights with a variable phase duration are widely used to optimize traffic flows. Although the minimum and maximum duration of a phase is already published, route planners need a predicted duration with a certain confidence for routing decisions.
+We tested for a live Open traffic lights dataset of Antwerp (i) how frequency distributions of phase durations can be used for predicting and (ii) how this could work client-side by creating frequency distributions on-the-fly.
+A mean average error (MAE) of 5.1 seconds is observed by grouping the phase durations in fine-grained time slots and using the median to select a predicted phase duration. Also we see that the MAE is flattening around 10s for phase durations below 62s and starts growing linear after that. 
+With our approach, route planners can have a good indication of the current phase duration for the bulk of phases. In future work, we will look into how client-side route planners can integrate traffic lights data into their road network graph and how other Open Datasets can be reused to detect the more exceptionally longer phase durations.

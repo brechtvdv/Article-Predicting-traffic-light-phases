@@ -1,16 +1,21 @@
 ## Demonstrator
 {:#demonstrator}
 
-This application demonstrates a Web client that predicts the phase duration of a live traffic light in [Antwerp](https://www.openstreetmap.org/#map=19/51.21205/4.39717). This client continuously fetches the latest data fragment from the OTL API and constructs frequency distributions for every signal group, signal phase, day and time slots of 20 minutes. The median is calculated for the predicted phase duration at the start of every signal phase.
+This application demonstrates a Web client that predicts the phase duration of a live traffic light in [Antwerp](https://www.openstreetmap.org/#map=19/51.21205/4.39717). The green line on the chart shows minimum duration in seconds of the phase, like wise the red line shows the maximum duration. A blue line will show the predicted duration, but the client first needs to construct frequency distributions by continuously fetching the latest data from the [OTL API](https://lodi.ilabt.imec.be/observer/rawdata/latest). Frequency distributions are made with the third grouping strategy, for every signal group, signal phase, day and time slots of 20 minutes. The median is calculated at the start of a new phase for the predicted phase.
+
+This vizualization gives some insights:
+
+* The predicted phase duration increases the insight how long the phase will actual take, especially when the minimum and maximum duration differ tens of seconds.
+* When the minimum duration aligns with the maximum duration, the blue line gets corrected with a few seconds. This behavior corresponds with the average results from [](#mae-prediction).
 
 The source code can be found as a Codepen at [https://codepen.io/kridhaen/pen/VJrezO/](https://codepen.io/kridhaen/pen/VJrezO/).
 
 <figure id="codepen">
 <center>
-<img src="img/demo.PNG">
+<img src="img/demo-2.png">
 </center>
 <figcaption markdown="block">
-TODO
+Webapplication that shows the minimum (green), maximum (red) and predicted (blue) phase duration (seconds) of a live traffic light in Antwerp. The predicted phase duration is calculated by creating a frequency distribution on-the-fly from the live data.
 </figcaption>
 </figure>
 
