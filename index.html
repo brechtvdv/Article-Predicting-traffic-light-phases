@@ -145,11 +145,11 @@ The test cases are ran using 10-fold cross validation. First, we extracted the p
 
       <p>We go one step further by also considering how the MAE of a specific signal group evolves over time. We hypothesize that the prediction error will be higher in the beginning of a phase than on the end of the phase.
 Signal phases are grouped per day and every 20 minutes and the median is used for the prediction.
- <a href="#time-till-transition">Fig. 1</a> shows for the <a href="https://w3id.org/opentrafficlights/thesauri/signalphase/3">signal phase</a> with label “Stop and remain”, which corresponds with a red light, how the prediction error decreases when the time until the end of the phase also decreases. We see can three findings: first, the prediction error grows linear for phase durations above 62 seconds. This is because very long phases occur less, thus using the median for predicting these outliers is not a good fit. Secondly, we see a more flat line for phase durations between 9 and 65 seconds with a MAE around 10 seconds. This can be explained that the bulk of phases are between this interval which makes the median a good choice. Finally, between 0 and 9 seconds predicting was not necessary, because the minimum duration equals the maximum duration.</p>
+ <a href="#time-till-transition">Fig. 1</a> shows for the <a href="https://w3id.org/opentrafficlights/thesauri/signalphase/3">signal phase</a> with label “Stop and remain”, which corresponds with a red light, how the prediction error decreases when the time until the end of the phase also decreases. We see can three findings: first, the prediction error grows linear for phase durations above 62 seconds. This is because very long phases occur less, thus using the median for predicting these outliers is not a good fit. Secondly, we see a flatten line for phase durations between 9 and 65 seconds with a MAE around 10 seconds. This can be explained that the bulk of phases are between this interval which makes the median a good choice. Finally, between 0 and 9 seconds predicting was not necessary, because the minimum duration equals the maximum duration.</p>
 
       <figure id="time-till-transition">
 <center>
-<img style="height: auto; width: 50%" src="img/time-till-transition-2.svg" />
+<img style="height: auto; width: 70%" src="img/time-till-transition-2.svg" />
 </center>
 <figcaption>
           <p><span class="label">Fig. 1:</span> The prediction error lowers when the phase reaches its end. This is done for the <a href="https://w3id.org/opentrafficlights/thesauri/signalphase/3">signal phase</a> with label “Stop and remain”.</p>
@@ -160,13 +160,13 @@ Signal phases are grouped per day and every 20 minutes and the median is used fo
   <section id="demonstrator">
       <h2>Demonstrator</h2>
 
-      <p>This application demonstrates a Web client that predicts the phase duration of a live traffic light in <a href="https://www.openstreetmap.org/#map=19/51.21205/4.39717">Antwerp</a>. The green line on the chart shows minimum duration in seconds of the phase, like wise the red line shows the maximum duration. A blue line will show the predicted duration, but the client first needs to construct frequency distributions by continuously fetching the latest data from the <a href="https://lodi.ilabt.imec.be/observer/rawdata/latest">OTL API</a>. Frequency distributions are made with the third grouping strategy, for every signal group, signal phase, day and time slots of 20 minutes. The median is calculated at the start of a new phase for the predicted phase.</p>
+      <p>This Web application demonstrates the prediction of the current phase duration of a live traffic light in <a href="https://www.openstreetmap.org/#map=19/51.21205/4.39717">Antwerp</a>. The green line on the chart shows the minimum duration in seconds of the phase, like wise the red and blue line show respectively the the maximum and predicted duration. The client harvests the latest data from the <a href="https://lodi.ilabt.imec.be/observer/rawdata/latest">OTL API</a>, to then construct frequency distributions with the same strategy as <a href="#results">Section 4</a>.</p>
 
       <p>This vizualization gives some insights:</p>
 
       <ul>
-        <li>The predicted phase duration increases the insight how long the phase will actual take, especially when the minimum and maximum duration differ tens of seconds.</li>
-        <li>When the minimum duration aligns with the maximum duration, the blue line gets corrected with a few seconds. This behavior corresponds with the average results from <a href="#mae-prediction">Table 1</a>.</li>
+        <li>The minimum and maximum duration can differ tens of seconds, especially in the beginning. With the predicted phase, a user can have a better understanding how long it probably will actual take.</li>
+        <li>The blue line gets mostly corrected with a few seconds when the minimum and maximum duration align. This behavior corresponds with the average prediction error from <a href="#mae-prediction">Table 1</a>.</li>
       </ul>
 
       <p>The source code can be found as a Codepen at <a href="https://codepen.io/kridhaen/pen/VJrezO/">https:/​/​codepen.io/kridhaen/pen/VJrezO/</a>.</p>
@@ -176,7 +176,7 @@ Signal phases are grouped per day and every 20 minutes and the median is used fo
 <img src="img/demo-2.png" />
 </center>
 <figcaption>
-          <p><span class="label">Fig. 2:</span> Webapplication that shows the minimum (green), maximum (red) and predicted (blue) phase duration (seconds) of a live traffic light in Antwerp. The predicted phase duration is calculated by creating a frequency distribution on-the-fly from the live data.</p>
+          <p><span class="label">Fig. 2:</span> Webapplication that predicts the phase duration (blue line) by creating frequency distributions on-the-fly from live data.</p>
         </figcaption>
 </figure>
 
@@ -192,9 +192,9 @@ Signal phases are grouped per day and every 20 minutes and the median is used fo
   <section id="discussion">
       <h2>Discussion</h2>
 
-      <p>In this paper we demonstrated how frequency distributions can be used for predicting the phase duration of a traffic light. Different approaches are possible to create these distributions over the Web: on the one hand, a client can do all the work by downloading fragments from the <a href="https://lodi.ilabt.imec.be/observer/rawdata/latest">OTL API</a> and building the distributions client-side. This requires high bandwidth consumption and processing power, but allows new ways of grouping signal phases by querying other Open Datasets (wheather data, crowdness detectors at the intersection…). On the other hand, the server can internally maintain frequency distributions and only publish the likely time and confidence in SPAT messages. This gives no flexibility for the client, for example to predict an interval instead of one phase duration. A third option is to publish frequency distributions as metadata of a signal group. This introduces a new trade-off between server and client effort: frequency distributions can be exposed as cacheable fragments supporting serverless route planning interfaces, while clients can still mix these with other datasets and setting custom prediction preferences.</p>
+      <p>Different approaches are possible to create these distributions over the Web: on the one hand, a client can do all the work, which we showed in our demo, by downloading fragments from the <a href="https://lodi.ilabt.imec.be/observer/rawdata/latest">OTL API</a> and building the distributions client-side. This requires high bandwidth consumption and processing power, but allows new ways of grouping signal phases. For example by querying other Open Datasets (wheather data, crowdedness detectors at the intersection…). On the other hand, the server can internally maintain frequency distributions and only publish the likely time and confidence in SPAT messages. Although this answers the current SPAT standard, this gives no flexibility for the client to e.g. predict an interval instead of one phase duration. A third option is to publish frequency distributions as metadata of a signal group. This introduces a new trade-off between server and client effort: frequency distributions can be exposed as cacheable fragments supporting serverless route planning interfaces, while clients can still mix these with other datasets and setting custom prediction preferences.</p>
 
-      <p>Future work should be done how frequency distributions or in general summaries of sensor data can be published with RDF. Also, we need to investigate how a client-side route planner (cfr. <a href="https://planner.js.org/">Planner.js</a>) can integrate this data and how this can influence the user perceived journey experience.</p>
+      <p>Future work should be done how frequency distributions or in general summaries of sensor data can be published with RDF. Also, we need to investigate how a client-side route planner (cfr. <a href="https://planner.js.org/">Planner.js</a>) can integrate this data into its internal road network and how this can influence the user perceived journey experience.</p>
 
     </section>
 
