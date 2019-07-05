@@ -29,11 +29,11 @@ A prediction error of 5.1 seconds is achieved by using the median and grouping p
 
 We go one step further by also considering how the MAE of a specific signal group evolves over time. We hypothesize that the prediction error will be higher in the beginning of a phase than on the end of the phase.
 Signal phases are grouped per day and every 20 minutes and the median is used for the prediction.
- [](#time-till-transition) shows for the [signal phase](https://w3id.org/opentrafficlights/thesauri/signalphase/3) with label "Stop and remain", which corresponds with a red light, how the prediction error decreases when the time until the end of the phase also decreases. We see can three findings: first, the prediction error grows linear for phase durations above 62 seconds. This is because very long phases occur less, thus using the median for predicting these outliers is not a good fit. Secondly, we see a more flat line for phase durations between 9 and 65 seconds with a MAE around 10 seconds. This can be explained that the bulk of phases are between this interval which makes the median a good choice. Finally, between 0 and 9 seconds predicting was not necessary, because the minimum duration equals the maximum duration.
+ [](#time-till-transition) shows for the [signal phase](https://w3id.org/opentrafficlights/thesauri/signalphase/3) with label "Stop and remain", which corresponds with a red light, how the prediction error decreases when the time until the end of the phase also decreases. We see can three findings: first, the prediction error grows linear for phase durations above 62 seconds. This is because very long phases occur less, thus using the median for predicting these outliers is not a good fit. Secondly, we see a flatten line for phase durations between 9 and 65 seconds with a MAE around 10 seconds. This can be explained that the bulk of phases are between this interval which makes the median a good choice. Finally, between 0 and 9 seconds predicting was not necessary, because the minimum duration equals the maximum duration.
 
 <figure id="time-till-transition">
 <center>
-<img style="height: auto; width: 50%" src="img/time-till-transition-2.svg">
+<img style="height: auto; width: 70%" src="img/time-till-transition-2.svg">
 </center>
 <figcaption markdown="block">
 The prediction error lowers when the phase reaches its end. This is done for the [signal phase](https://w3id.org/opentrafficlights/thesauri/signalphase/3) with label "Stop and remain".
