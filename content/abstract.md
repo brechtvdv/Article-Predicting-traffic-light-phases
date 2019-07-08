@@ -1,15 +1,8 @@
 ## Abstract
-Traffic lights with a variable phase duration are widely used for optimizing traffic flows. Although the minimum and maximum duration of a phase is published,
-<span class="comment" data-author="RV">globally, or just in Antwerp?</span>
+Traffic lights that dynamically adapt their phase duration, according to the situation on the intersection, are widely used for optimizing traffic flows. Although the minimum and maximum duration of a phase are published in Flanders,
 a predicted duration with a certain confidence would increase the reusability of traffic lights data for route planners.
-We tested for a live Open traffic lights dataset of Antwerp (i) how frequency distributions of phase durations can be used to predict the duration of the current phase and (ii) how frequency distributions can be created client-side and on-the-fly with a demonstrator.
-An overall mean average error (MAE) of 5.1 seconds is reached by grouping the phase durations <span class="rephrase">per day and in timeslots of 20 minutes and using the median</span> to select a predicted phase duration. When taking the <span class="rephrase">time until end of phase</span> into account, we see for the bulk of phases that the MAE is flattening around 10 seconds,
-<span class="comment" data-author="RV">And is that good or bad? This is an example of an observation, but without a conclusion attached to it. As such, readers will need to draw their own, and <em>if</em> they do so, it might be wrong.</span>
-but grows linearly for outliers. 
-<span class="comment" data-author="RV">same—good or bad?</span>
-With our approach, route planners can calculate how long the current phase will take by using frequency distributions.
-<span class="comment" data-author="RV">So what? Go a step further: you already said they could do that. Because of it, are their suggestions more accurate?</span>
-In future work, we will investigate how traffic lights data can be integrated into road network graphs and how other Open Datasets (crowdedness counters, public transport...) can be reused to detect the outlying phase durations.
-
-
-<span class="comment" data-author="RV">I don't want to undermine the work here, but I find it slightly strange. Why are we trying to predict this? Isn't it easier to get access to the control data that determines this duration? Or can you argue why it is hard/impossible to get access to that data?</span>
+We tested for a live Open traffic lights dataset of Antwerp how frequency distributions of phase durations (i) can be used to predict the duration of the current phase and (ii) can be created client-side and on-the-fly with a demonstrator.
+An overall mean average error (MAE) of 5.1 seconds is reached by using the median for predictions. A distribution is created for every time slot of 20 minutes and per day. This is better than expected, because phase durations can have a spectrum between a few seconds and over two minutes.
+When taking the remaining time until the phase changes into account, we see a MAE flattening around 10 seconds when the remaining time is less than a minute. As most phases take less than a minute, route planning over an intersection underneath a minute becomes feasible.  
+Unfortunately, the MAE grows linear for phases longer than a minute, thus our prediction method is useless when this happens. 
+In future work, we investigate how other Open Datasets (crowdedness counters, public transport...) can be reused to find correlations with these exceptionally long phase durations. This way, the prediction error would be bounded to a certain level leaving very high error rates only for real emergencies.
