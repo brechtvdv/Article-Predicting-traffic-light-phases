@@ -1,11 +1,16 @@
 ## Discussion
 {:#discussion}
 
-Different approaches are possible to create these distributions over the Web: on the one hand, a client can do all the work, which we showed in our demo, by downloading fragments from the [OTL API](https://lodi.ilabt.imec.be/observer/rawdata/latest) and building the distributions client-side.
+A route planner can predict a fixed phase duration, e.g. the phase will probably last 20 seconds, with a frequency distribution and selector like the mean, but how can it anticipate on the error this prediction brings?
+One possibility would be to look up the prediction error that is accompanied with the time until phase change ([](#time-till-transition)). This mean absolute error says how much the predicted duration is averagely off allowing the driver to only consider predictions below a certain threshold. In future work, we suggest to also use a frequency distribution for the variance of prediction errors, so a route planner can anticipate on an interval of prediction errors.
+Another possibility would be to use the cumulative frequency distribution to route with a fixed probability. For example, when 90% of historical phase durations happened before a certain duration, then a route planner can be 90% sure that the phase will change before that time. This fixed probability can be configured as a user preference. 
+Whether a predicted phase duration is useful also depends on other factors such as the crowdedness in the streets. When it is very crowded, traffic lights data becomes useless as the driver does not have a lot of flexibility. Reusing data about the travel times between points would be a better option. In case it is not crowded, an accurate prediction of the phase duration can improve the journey experience by aiming for green time or by minimizing waiting before a red light. 
+Sometimes phases can take exceptionally long (e.g. above a minute [](#time-till-transition)) which magnifies the prediction error. Related work [](cite:cites 7325247) has already demonstrated that having access to all detector information lowers the prediction error significantly.
+In future work, we will look into publishing the live vehicle counter dataset from the intersection in Antwerp as Linked Open Data and reuse this to minimize the prediction error.
+
+<!-- Different approaches are possible to create these distributions over the Web: on the one hand, a client can do all the work, which we showed in our demo, by downloading fragments from the [OTL API](https://lodi.ilabt.imec.be/observer/rawdata/latest) and building the distributions client-side.
 <span class="comment" data-author="RV">Why is that relevant though? This is about the goodness of the prediction, not about who does it?</span>
 This requires high bandwidth consumption and processing power, but allows new ways of grouping signal phases. For example by querying other Open Datasets (weather data, crowdedness detectors at the intersection...). On the other hand, the server can internally maintain frequency distributions and only publish the likely time and confidence in SPAT messages. Although this answers the current SPAT standard, this gives no flexibility for the client to e.g. predict an interval instead of one phase duration. A third option is to publish frequency distributions as metadata of a signal group. This introduces a new trade-off between server and client effort: frequency distributions can be exposed as cacheable fragments supporting serverless route planning interfaces, while clients can still mix these with other datasets and setting custom prediction preferences.  
-
-Future work should be done how frequency distributions or in general summaries of sensor data can be published with RDF.
-<span class="comment" data-author="RV">Why? That seems unrelated.</span>
-Also, we need to investigate how a client-side route planner (cfr. [Planner.js](https://planner.js.org/)) can integrate this data into its internal road network and how this can influence the user perceived journey experience.
-
+ -->
+<!-- <span class="comment" data-author="RV">Why? That seems unrelated.</span>
+ -->

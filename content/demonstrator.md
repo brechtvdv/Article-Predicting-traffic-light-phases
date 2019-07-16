@@ -1,12 +1,13 @@
 ## Demonstrator
 {:#demonstrator}
 
-This Web application demonstrates the prediction of the current phase duration of a live traffic light in [Antwerp](https://www.openstreetmap.org/#map=19/51.21205/4.39717). The green line on the chart shows the minimum duration in seconds of the phase, like wise the red and blue line show respectively the the maximum and predicted duration. The client harvests the latest data from the [OTL API](https://lodi.ilabt.imec.be/observer/rawdata/latest), to then construct frequency distributions with the same strategy as [](#results).
+This Web application demonstrates the prediction of the current phase duration of a live traffic light in [Antwerp](https://www.openstreetmap.org/#map=19/51.21205/4.39717). The green, red and blue line on the chart shows respectively the minimum, maximum and predicted duration in seconds of the phase. 
+This client harvests the latest data from the Open Traffic Lights [API](https://lodi.ilabt.imec.be/observer/rawdata/latest) and constructs frequency distributions with the same strategy as [](#results).
 
 This vizualization gives some insights:
 
-* The minimum and maximum duration can differ tens of seconds, especially in the beginning. With the predicted phase, a user can have a better understanding how long it probably will actual take.
-* The blue line gets mostly corrected with a few seconds when the minimum and maximum duration align. This behavior corresponds with the average prediction error from [](#mae-prediction). 
+* The minimum and maximum duration can differ tens of seconds, especially in the beginning. With the predicted phase, a user can have a better understanding how long the phase will probably take.
+* When the minimum and maximum duration align, and thus it becomes certain how long the phase take, the blue line gets mostly corrected with a few seconds. This behavior hints to our result from the average prediction error ([](#mae-prediction)). 
 
 The source code can be found as a Codepen at [https://codepen.io/kridhaen/pen/VJrezO/](https://codepen.io/kridhaen/pen/VJrezO/).
 
@@ -15,7 +16,7 @@ The source code can be found as a Codepen at [https://codepen.io/kridhaen/pen/VJ
 <img src="img/demo-2.png">
 </center>
 <figcaption markdown="block">
-Webapplication that predicts the phase duration (blue line) by creating frequency distributions on-the-fly from live data.
+With the blue line, we have a better understanding how the predicted phase duration relates to its minimum and maximum phase duration and whether it was close to the real duration.
 </figcaption>
 </figure>
 
