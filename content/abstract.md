@@ -1,7 +1,9 @@
 ## Abstract
 Dynamic traffic lights change their current phase duration according to the situation on the intersection, such as crowdedness. In Flanders, only the minimum and maximum duration of the current phase is published. When route planners want to reuse this data they have to predict how long the current phase will take in order to route over these traffic lights. 
-We tested for a live Open Traffic Lights dataset of Antwerp how frequency distributions of phase durations (i) can be used to predict the duration of the current phase and (ii) can be created client-side on-the-fly with a demonstrator.
-An overall mean average error (MAE) of 5.1 seconds is reached by using the median for predictions. A distribution is created for every day with time slot of 20 minutes. This result is better than expected, because phase durations can range between a few seconds and over two minutes.
+We tested for a live Open Traffic Lights dataset of Antwerp how frequency distributions of phase durations (i) can be used to predict the duration of the current phase and (ii) can be generated client-side on-the-fly with a demonstrator.
+An overall mean average error (MAE) of 5.1 seconds is reached by using the median for predictions. A distribution is created for every day with time slots of 20 minutes. This result is better than expected, because phase durations can range between a few seconds and over two minutes.
 When taking the remaining time until phase change into account, we see a MAE around 10 seconds when the remaining time is less than a minute which we still deem valuable for route planning. 
 Unfortunately, the MAE grows linear for phases longer than a minute making our prediction method useless when this occurs. 
-In future work, we want to minimize the error rate by publishing and reusing a live vehicle counter dataset from the intersection in Antwerp.
+Based on these results, we wish to present two discussion points during the workshop.
+
+<!-- In future work, we want to minimize the error rate by publishing and reusing a live vehicle counter dataset from the intersection in Antwerp. -->
