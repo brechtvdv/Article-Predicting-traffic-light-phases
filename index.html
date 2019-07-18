@@ -56,11 +56,13 @@
  <section id="abstract">
     <h2>Abstract</h2>
     <p>Dynamic traffic lights change their current phase duration according to the situation on the intersection, such as crowdedness. In Flanders, only the minimum and maximum duration of the current phase is published. When route planners want to reuse this data they have to predict how long the current phase will take in order to route over these traffic lights. 
-We tested for a live Open Traffic Lights dataset of Antwerp how frequency distributions of phase durations (i) can be used to predict the duration of the current phase and (ii) can be created client-side on-the-fly with a demonstrator.
-An overall mean average error (MAE) of 5.1 seconds is reached by using the median for predictions. A distribution is created for every day with time slot of 20 minutes. This result is better than expected, because phase durations can range between a few seconds and over two minutes.
+We tested for a live Open Traffic Lights dataset of Antwerp how frequency distributions of phase durations (i) can be used to predict the duration of the current phase and (ii) can be generated client-side on-the-fly with a demonstrator.
+An overall mean average error (MAE) of 5.1 seconds is reached by using the median for predictions. A distribution is created for every day with time slots of 20 minutes. This result is better than expected, because phase durations can range between a few seconds and over two minutes.
 When taking the remaining time until phase change into account, we see a MAE around 10 seconds when the remaining time is less than a minute which we still deem valuable for route planning. 
 Unfortunately, the MAE grows linear for phases longer than a minute making our prediction method useless when this occurs. 
-In future work, we want to minimize the error rate by publishing and reusing a live vehicle counter dataset from the intersection in Antwerp.</p>
+Based on these results, we wish to present two discussion points during the workshop.</p>
+
+    <!-- In future work, we want to minimize the error rate by publishing and reusing a live vehicle counter dataset from the intersection in Antwerp. -->
   </section>
 
 
@@ -213,9 +215,11 @@ The source code is available at <a href="https://codepen.io/kridhaen/pen/VJrezO/
 
       <p>A route planner can predict a fixed phase duration, e.g. the phase will probably last 20 seconds, with a frequency distribution and selector like the mean, but can it anticipate on the error this prediction brings?
 By transforming the frequency distribution to a cumulative frequency distribution, routing with a fixed probability is possible. For example, when 90% of historical phase durations happened before a certain duration, then a route planner can be 90% sure that the phase will change before that time. This fixed probability can be configured as a user preference and also gives the possibility to cut off the exceptionally long phase durations from the time until phase change curve (<a href="#time-till-transition">Fig. 1</a>). A route planner can retrieve the maximum MAE from the left-side part of the curve to have an indication how much the predicted duration is averagely off in worst case and anticipate with it, e.g. will the driver still be on time for a green light or is there another route with less waiting time for a red light? Also this maximum MAE can be configured by the user which it deems usefull for routing.
+As a first discussion point (i), we would like to discuss whether a user should be able to configure a minimum probability or leave this responsibility to the data publisher, like in the Netherlands.
 In future work, we suggest to also use a frequency distribution for the variance of prediction errors instead of only calculating the MAE value.
 Whether a predicted phase duration is useful also depends on other factors, such as the crowdedness in the streets. When it is very crowded, we deem data about travel times between points more usefull than traffic lights data, because the driver does not have the flexibility to time its arrival at an intersection.
-Finally, related work <span class="references">[<a href="#ref-9">9</a>]</span> has already demonstrated that having access to all detector information lowers the prediction error significantly. This is why we will also publish in future work a live vehicle counter dataset from the intersection in Antwerp as Linked Open Data.</p>
+Finally, related work <span class="references">[<a href="#ref-9">9</a>]</span> has already demonstrated that having access to all detector information lowers the prediction error significantly. This brings us to our second discussion point (ii): what would enable a better description of how a traffic light is connected with other sensors in the broader context of a city (cfr. Digital Twin)?
+As a next step, we will publish a live vehicle counter dataset from the intersection in Antwerp as Linked Open Data and reuse this for lowering the prediction error.</p>
 
       <!-- Different approaches are possible to create these distributions over the Web: on the one hand, a client can do all the work, which we showed in our demo, by downloading fragments from the [OTL API](https://lodi.ilabt.imec.be/observer/rawdata/latest) and building the distributions client-side.
 <span class="comment" data-author="RV">Why is that relevant though? This is about the goodness of the prediction, not about who does it?</span>
