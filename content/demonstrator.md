@@ -9,7 +9,7 @@ The source code is available at [https://codepen.io/kridhaen/pen/VJrezO/](https:
 
 <figure id="codepen">
 <center>
-<img src="img/demo-2.png">
+<img style="height: auto; width: 90%" src="img/demo-2.png">
 </center>
 <figcaption markdown="block">
 The blue line shows the predicted phase duration which gives a better understanding how this relates to the minimum (green) and maximum (red) phase duration and whether it was a good prediction in the end.
