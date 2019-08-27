@@ -6,3 +6,18 @@ header {
     display: none;
   }
 }
+
+.firstpagefooter {
+  position: absolute;
+  right: 0;
+  bottom: 70px;
+  left: 0;
+}
+
+.footnotecopyright {
+  border-top: 1px solid black;
+  padding-top: 3px;
+  display: block;
+  line-height:1.1em;
+  font-size:0.8em;
+}

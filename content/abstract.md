@@ -6,4 +6,9 @@ When taking the remaining time until phase change into account, we see a MAE aro
 Unfortunately, the MAE grows linear for phases longer than a minute making our prediction method useless when this occurs. 
 Based on these results, we wish to present two discussion points during the workshop.
 
-<!-- In future work, we want to minimize the error rate by publishing and reusing a live vehicle counter dataset from the intersection in Antwerp. -->
+<span class="printonly firstpagefooter">
+<span class="footnotecopyright">
+This is a print-version of an article first written for the Web. The Web-version is available at https://brechtvdv.github.io/Article-Predicting-traffic-light-phases .                              
+Copyright © 2019 for this paper by its authors. Use permitted under Creative Commons License Attribution 4.0 International (CC BY 4.0).
+</span>
+</span>
