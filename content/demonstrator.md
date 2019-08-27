@@ -1,10 +1,12 @@
 ## Demonstrator
 {:#demonstrator}
 
-This Web [application](https://codepen.io/kridhaen/pen/VJrezO/) demonstrates the prediction of the current phase duration of a live traffic light in [Antwerp](https://www.openstreetmap.org/#map=19/51.21205/4.39717). The green, red and blue line on the chart shows respectively the minimum, maximum and predicted duration in seconds of the phase. 
-This client harvests the latest data from the Open Traffic Lights [API](https://lodi.ilabt.imec.be/observer/rawdata/latest) and constructs frequency distributions with the same strategy as [](#results).
-This vizualization shows us that the minimum and maximum duration can differ tens of seconds, especially in the beginning. With the predicted phase, a user can have a better understanding how long the phase will probably take.
-Also when the minimum and maximum duration align, and thus it becomes certain how long the phase take, the blue line gets mostly corrected with a few seconds. This behavior hints to our result from the average prediction error ([](#mae-prediction)).
+This Web [application](https://codepen.io/kridhaen/pen/VJrezO/) demonstrates the prediction of the current phase duration of a live traffic light in [Antwerp](https://www.openstreetmap.org/#map=19/51.21205/4.39717). 
+This gives implementers of route planning engines better insight how traffic lights data work and how its reusability increases by applying prediction methods.
+The green, red and blue line on the chart shows respectively the minimum, maximum and predicted duration in seconds of the phase.
+On the client-side the latest data from the Open Traffic Lights [API](https://lodi.ilabt.imec.be/observer/rawdata/latest) gets harvested and frequency distributions are constructed with the same strategy as [](#results).
+This vizualization shows us that the minimum and maximum duration can differ tens of seconds, especially in the beginning. 
+Also, when the minimum and maximum duration align, and thus it becomes certain how long the phase take, the blue line gets mostly corrected with a few seconds. This behavior hints to our result from the mean prediction error ([](#mae-prediction)).
 The source code is available at [https://codepen.io/kridhaen/pen/VJrezO/](https://codepen.io/kridhaen/pen/VJrezO/).
 
 <figure id="codepen">
